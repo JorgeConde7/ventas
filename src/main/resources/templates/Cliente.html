@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+
+<body>
+<section class="app">
+    <!-- Start side-menu -->
+    <aside class="sidebar">
+        <header><b>TABLERO DE CONTROL</b></header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#"><i class="ion-ios-people"></i> <span>Empleados</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="Empleado.html"><i class="ion-ios-list-outline"></i>Listar Empleados</a>
+                        </li>
+                        <li><a href="#"><i class="ion-person-add"></i>Nuevo Empleado</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-record"></i> <span class="">Cliente</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="Cliente.html"><i class="ion-ios-list-outline"></i>Listar Clientes</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Puntaje Cliente</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-ios-grid-view-outline"></i>
+                    <span class="">Productos</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="Producto.html"><i class="ion-ios-list-outline"></i>Listar Productos</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Nuevo Producto</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Nuevo Ingreso</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-android-checkbox-outline-blank"></i>
+                    <span class="">Categoria Producto</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Categorias</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Nueva Reserva</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-android-checkbox-outline-blank"></i>
+                    <span class="">Marca Producto</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Marcas</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Nueva Reserva</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-android-checkbox-outline-blank"></i>
+                    <span class="">Proveedores</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Proveedores</a>
+                        </li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Nueva Reserva</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-social-usd"></i> <span class="">Pedidos</span></a>
+                    <ul class="nav-flyout">
+                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Pedidos</a></li>
+                        <li><a href="#"><i class="ion-ios-plus-outline"></i>Registrar Pedido</a>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="ion-log-out"></i> <span class="">Cerrar Sesión</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- End side-menu -->
+    <!-- Start body-main -->
+    <section class="body-main">
+        <main class="container-fluid">
+            <section class="row">
+                <div class="col-lg">
+                    <div class="table-responsive">
+                        <a id="btnNuevoCliente" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
+                        <table id="tablaPersonas" class="table table-hover table-dark text-light table-responsive-lg table-bordered">
+                            <thead class="text-center">
+                            <tr>
+                                <th colspan="9">LISTA DE CLIENTES</th>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Dni</th>
+                                <th>Edad</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="empl:${empleados}" >
+                                <td th:text="${empl.nombre}"></td>
+                                <td th:text="${empl.apellido}"></td>
+                                <td th:text="${empl.telefono}"></td>
+                                <td th:text="${empl.nombre}"></td>
+                                <td class="acciones">
+                                    <a class="btn btn-warning"><i class="ion-edit"></i> Editar</a>
+                                    <a class="btn btn-danger"><i class="ion-close-round"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </section>
+    <!--Modal para CRUD-->
+    <section class="body-main" >
+        <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="formPersonas">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido" class="col-form-label">Apellido:</label>
+                                <input type="text" class="form-control" id="apellido">
+                            </div>
+                            <div class="form-group">
+                                <label for="dni" class="col-form-label">Dni:</label>
+                                <input type="text" class="form-control" id="dni">
+                            </div>
+                            <div class="form-group">
+                                <label for="edad" class="col-form-label">Edad:</label>
+                                <input type="number" class="form-control" id="edad">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End body-main -->
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/main.js"></script>
+</body>
+
+</html>
