@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/jquery-3.4.1.js"></script>
 
 </head>
 
@@ -21,7 +23,7 @@
             <ul>
                 <li><a href="#"><i class="ion-ios-people"></i> <span>Empleados</span></a>
                     <ul class="nav-flyout">
-                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Empleados</a>
+                        <li><a href="Empleado.html"><i class="ion-ios-list-outline"></i>Listar Empleados</a>
                         </li>
                         <li><a href="#"><i class="ion-person-add"></i>Nuevo Empleado</a>
                         </li>
@@ -29,7 +31,7 @@
                 </li>
                 <li><a href="#"><i class="ion-record"></i> <span class="">Cliente</span></a>
                     <ul class="nav-flyout">
-                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Clientes</a>
+                        <li><a href="Cliente.html"><i class="ion-ios-list-outline"></i>Listar Clientes</a>
                         </li>
                         <li><a href="#"><i class="ion-ios-plus-outline"></i>Puntaje Cliente</a>
                         </li>
@@ -38,7 +40,7 @@
                 <li><a href="#"><i class="ion-ios-grid-view-outline"></i>
                     <span class="">Productos</span></a>
                     <ul class="nav-flyout">
-                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Productos</a>
+                        <li><a href="Producto.html"><i class="ion-ios-list-outline"></i>Listar Productos</a>
                         </li>
                         <li><a href="#"><i class="ion-ios-plus-outline"></i>Nuevo Producto</a>
                         </li>
@@ -65,7 +67,7 @@
                 <li><a href="#"><i class="ion-android-checkbox-outline-blank"></i>
                     <span class="">Proveedores</span></a>
                     <ul class="nav-flyout">
-                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Proveedores</a>
+                        <li><a href="Proveedor.html"><i class="ion-ios-list-outline"></i>Listar Proveedores</a>
                         </li>
                         <li><a href="#"><i class="ion-ios-plus-outline"></i>Nueva Reserva</a></li>
                     </ul>
@@ -85,41 +87,28 @@
     <section class="body-main">
         <main class="container-fluid">
             <section class="row">
-                <div class="col-lg">
-                    <a href="#" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
-                    <table class="table table-hover table-dark text-light table-responsive-lg table-bordered">
+                <a id="btnNuevoProveedor" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
+                <div class="card">
+                    <div class="card-body">
+
+                    <table id="tablaProveedor" class="table table-hover table-dark text-light table-responsive-lg table-bordered">
                         <thead class="text-center">
                         <tr>
-                            <th colspan="9">LISTA DE EMPLEADOS</th>
+                            <th colspan="9">LISTA DE PROVEEDORES</th>
                         </tr>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Dni</th>
-                            <th>Edad</th>
-                            <th>Celular</th>
-                            <th>Direccion</th>
-                            <th>Cargo</th>
+                            <th>Proveedor</th>
+                            <th>Contacto</th>
+                            <th>RUC</th>
+                            <th>Telefono</th>
                             <th>Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="empl:${empleados}" >
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td class="acciones">
-                                <a class="btn btn-warning"><i class="ion-edit"></i> Editar</a>
-                                <a class="btn btn-danger"><i class="ion-close-round"></i> Eliminar</a>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
-                </div>
+
             </section>
 
         </main>
@@ -127,7 +116,7 @@
     </section>
     <!--Modal para CRUD-->
     <section class="body-main" >
-        <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -135,22 +124,22 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="formPersonas">
+                    <form id="formProveedor">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <label for="nombre" class="col-form-label">Proveedor:</label>
                                 <input type="text" class="form-control" id="nombre">
                             </div>
                             <div class="form-group">
-                                <label for="apellido" class="col-form-label">Apellido:</label>
+                                <label for="apellido" class="col-form-label">Contacto:</label>
                                 <input type="text" class="form-control" id="apellido">
                             </div>
                             <div class="form-group">
-                                <label for="dni" class="col-form-label">Dni:</label>
+                                <label for="dni" class="col-form-label">RUC:</label>
                                 <input type="text" class="form-control" id="dni">
                             </div>
                             <div class="form-group">
-                                <label for="edad" class="col-form-label">Edad:</label>
+                                <label for="edad" class="col-form-label">Telefono:</label>
                                 <input type="number" class="form-control" id="edad">
                             </div>
                         </div>
@@ -169,7 +158,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 <script src="../static/js/main.js"></script>
 </body>
 

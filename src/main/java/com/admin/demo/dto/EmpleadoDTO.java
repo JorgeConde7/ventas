@@ -7,13 +7,11 @@ import javax.persistence.Enumerated;
 
 
 public class EmpleadoDTO {
-    private int idEmpleado;
+    @Column(name = "nombres")
     private String nombres;
+    @Column(name="apellidos")
     private String apellidos;
+    @Column(name = "dni")
     private String dni;
-    private String edad;
-    private String celular;
-    private String direccion;
-    private Cargo cargo;
 
 }

@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-
+    <script src="../static/js/jquery-3.4.1.js"></script>
 
 </head>
 
@@ -66,7 +67,7 @@
                 <li><a href="#"><i class="ion-android-checkbox-outline-blank"></i>
                     <span class="">Proveedores</span></a>
                     <ul class="nav-flyout">
-                        <li><a href="#"><i class="ion-ios-list-outline"></i>Listar Proveedores</a>
+                        <li><a href="Proveedor.html"><i class="ion-ios-list-outline"></i>Listar Proveedores</a>
                         </li>
                         <li><a href="#"><i class="ion-ios-plus-outline"></i>Nueva Reserva</a></li>
                     </ul>
@@ -86,9 +87,11 @@
     <section class="body-main">
         <main class="container-fluid">
             <section class="row">
-                <div class="col-lg">
-                    <a id="btnNuevoProducto" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
-                    <table class="table table-hover table-dark text-light table-responsive-lg table-bordered">
+                <a id="btnNuevoProducto" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
+                <div class="card">
+                    <div class="card-body">
+
+                    <table id="tablaProducto" class="table table-hover table-dark text-light table-responsive-lg table-bordered">
                         <thead class="text-center">
                         <tr>
                             <th colspan="9">LISTA DE PRODUCTOS</th>
@@ -104,20 +107,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="empl:${empleados}" >
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td class="acciones">
-                                <a class="btn btn-warning"><i class="ion-edit"></i> Editar</a>
-                                <a class="btn btn-danger"><i class="ion-close-round"></i> Eliminar</a>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </section>
 
@@ -171,7 +164,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 <script src="../static/js/main.js"></script>
 </body>
 

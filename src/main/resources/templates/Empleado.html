@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <title>Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../static/js/jquery-3.4.1.js"></script>
 
 </head>
 
@@ -82,13 +84,21 @@
         </nav>
     </aside>
     <!-- End side-menu -->
+    <section>
+        <header>
+            <!--         <h3 class="text-center text-light">Tutorial</h3>-->
+            <h1 class="text-center text-light">CRUD con <span class="badge badge-danger">SISTEMA VENTAS</span></h1>
+        </header>
+    </section>
     <!-- Start body-main -->
     <section class="body-main">
         <main class="container-fluid">
             <section class="row">
-                <div class="col-lg">
-                    <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
-                    <table class="table table-hover table-dark text-light table-responsive-lg table-bordered">
+                <a id="btnNuevoEmpleado" class="btn btn-success float-right my-2"><i class="ion-plus-round"></i> Nuevo</a>
+                <div class="card">
+                    <div class="card-body">
+
+                    <table id="tablaEmpleado" class="table table-hover table-dark text-light table-responsive-lg table-bordered">
                         <thead class="text-center">
                         <tr>
                             <th colspan="9">LISTA DE EMPLEADOS</th>
@@ -105,21 +115,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="empl:${empleados}" >
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td th:text="${empl.nombre}"></td>
-                            <td th:text="${empl.apellido}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td th:text="${empl.telefono}"></td>
-                            <td class="acciones">
-                                <a class="btn btn-warning"><i class="ion-edit"></i> Editar</a>
-                                <a class="btn btn-danger"><i class="ion-close-round"></i> Eliminar</a>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </section>
 
@@ -133,30 +132,57 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <form id="formEmpleado">
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="nombre" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre">
+                            <div class="">
+                                <label for="nombres" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombres">
                             </div>
-                            <div class="form-group">
-                                <label for="apellido" class="col-form-label">Apellido:</label>
-                                <input type="text" class="form-control" id="apellido">
+                            <div class="">
+                                <label for="apellidos" class="col-form-label">Apellido:</label>
+                                <input type="text" class="form-control" id="apellidos">
                             </div>
-                            <div class="form-group">
+                            <div class="">
                                 <label for="dni" class="col-form-label">Dni:</label>
                                 <input type="text" class="form-control" id="dni">
                             </div>
-                            <div class="form-group">
+                            <div class="">
                                 <label for="edad" class="col-form-label">Edad:</label>
                                 <input type="number" class="form-control" id="edad">
                             </div>
+                            <div class="">
+                                <label for="celular" class="col-form-label">Celular:</label>
+                                <input type="text" class="form-control" id="celular">
+                            </div>
+                            <div class="">
+                                <label for="direccion" class="col-form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="direccion">
+                            </div>
+                            <div class="">
+                                <label  class="col-form-label">Cargo:</label>
+                                <select id="cargo  " name="cargo" class="form-control">
+                                    <option>Seleccione</option>
+                                    <option value="cargo">VENDEDOR</option>
+                                    <option value="cargo">ADMINISTRADOR</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <label for="usuario" class="col-form-label">Usuario:</label>
+                                <input type="text" class="form-control" id="usuario">
+                            </div>
+                            <div class="">
+                                <label for="contraseña" class="col-form-label">Contraseña:</label>
+                            </div>
+                            <div class="input-group">
+                                <input id="contraseña" type="password" class="form-control">
+                                <div class="input-group-append">
+                                    <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                            <button type="button" id="btnCancelar" class="btn btn-light" data-dismiss="modal">Cancelar</button>
                             <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
                         </div>
                     </form>
@@ -164,13 +190,40 @@
             </div>
         </div>
     </section>
+    <section class="body-main" >
+        <form id="frmEliminarEmpleado" action="" method="POST">
+
+            <div class="modal fade" id="modalEliminarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 >Eliminar Empleado</h4>
+                        </div>
+                        <div class="modal-body">
+                            ¿Esta seguro de eliminar al empleado?<strong data-name=""></strong>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btnAceptarEliminar" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            <button type="button" id="btnCancelarEliminar" class="btn btn-default">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
     <!-- End body-main -->
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 <script src="../static/js/main.js"></script>
 </body>
 

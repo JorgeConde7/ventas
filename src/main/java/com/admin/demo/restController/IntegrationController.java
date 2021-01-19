@@ -4,6 +4,8 @@ import com.admin.demo.model.*;
 import com.admin.demo.repository.*;
 import com.admin.demo.service.ClienteService;
 import com.admin.demo.service.EmpleadoService;
+import com.admin.demo.service.ProductoService;
+import com.admin.demo.service.ProveedorService;
 import com.admin.demo.service.impl.EmpleadoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/rest-v1")
 public class IntegrationController {
 
@@ -22,22 +25,14 @@ public class IntegrationController {
     private ClienteService clienteService;
     @Autowired
     private EmpleadoService empleadoService;
-
     @Autowired
-    private EmpleadoInterface empleadoInterface;
-
+    private ProductoService productoService;
+    @Autowired
+    private ProveedorService proveedorService;
     @Autowired
     private BoletaInterface boletaInterface;
-
-    @Autowired
-    private ProductoInterface productoInterface;
-
     @Autowired
     private MarcaProductoInterface marcaProductoInterface;
-
-    /*Clientes */
-   /* @GetMapping("/listar-clientes")
-    public List<Cliente> listarClientes(){return clienteInterface.findAll();}*/
 
     @GetMapping("listar-clientes")
     public ResponseEntity<?>listarCliente(){
@@ -66,7 +61,7 @@ public class IntegrationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id,@RequestBody Cliente cliente){
+    public ResponseEntity<?> actualizar(@PathVariable Integer id,@RequestBody Cliente cliente){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(clienteService.update(id,cliente));
         }catch (Exception e){
@@ -93,15 +88,46 @@ public class IntegrationController {
         }
     }
 
+    @GetMapping("listar-empleados")
+    public ResponseEntity<?> listarEmpleados(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(empleadoService.listarEmpleado());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\"*:\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
 
-    @GetMapping("/listar-empleados")
-    public List<Empleado>listarEmpleados(){return empleadoInterface.findAll();}
+    @PostMapping("guardar-empleado")
+    public ResponseEntity<?> guardarEmpleado (@RequestBody  Empleado empleado){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(empleadoService.guardarEmpleado(empleado));
+        }catch (Exception e){
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"Error\"*:\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
+    @GetMapping("/listar-productos")
+    public ResponseEntity<?> listarProductos(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(productoService.listarProducto());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\"*:\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
+    @GetMapping("/listar-proveedores")
+    public ResponseEntity<?> listarProveedores(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(proveedorService.listarProveedor());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\"*:\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
 
     @GetMapping("/listar-boletas")
     public List<Boleta> ListarBoletas(){return boletaInterface.findAll();}
 
-    @GetMapping("/listar-productos")
-    public List<Producto> listarProductos(){return productoInterface.findAll();}
 
     @GetMapping("/listar-marcas")
     public List<MarcaProducto> listarMarcas(){return marcaProductoInterface.findAll();}
